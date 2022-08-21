@@ -422,7 +422,7 @@ void LSession::watcherChange(QString changed){
       if(engine.isEmpty()){ unsetenv("QT_QPA_PLATFORMTHEME"); }
       else{ setenv("QT_QPA_PLATFORMTHEME", engine.toUtf8().data(),1); }
     }else{
-      setenv("QT_QPA_PLATFORMTHEME", "lthemeengine",1); //ensure the lumina theme engine is always enabled
+      setenv("QT_QPA_PLATFORMTHEME", "qt5ct",1); //ensure the lumina theme engine is always enabled
     }
     emit SessionConfigChanged();
   }else if(changed.endsWith("desktopsettings.conf") ){ emit DesktopConfigChanged(); }
