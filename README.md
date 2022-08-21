@@ -2,8 +2,8 @@
 
 - Remove relations to fluxbox
 - Remove relations to compton
+- Remove lthemeengine relations
 - Remove screensaver, this will remove the QML dependency
-- Remove desktop-plugins, they are kinda buggy.
 
 - Better structure
 
@@ -22,3 +22,7 @@
 - - Make Application menu use icon only
 
 - - Make Taskmanager use icon only
+
+- Might work on it
+- - Remove unneeded hardcoded QProcess::startDetached() in many source files
+
