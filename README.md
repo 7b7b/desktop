@@ -2,23 +2,18 @@
 
 - Remove relations to fluxbox
 - Remove relations to compton
-- Remove screensaver, this will remove the QML dependency
-- Remove desktop-plugins, they are kinda buggy.
 
-- Better structure
-
-- - Add a folder for panel source files
-
-- - Add a folder for desktop source files
+- Desktop
+- - Desktop icons sometimes have an issue that changes their sizes to smaller sizes
 
 - Panel
 
 - - Add a checkbox for making the panel transparent
 
-- - Remove unwanted plugins for the bare minimium (Application Menu, Task Manager, Spacer, Tray, Clock and Show desktop)
+- Session
+- - Remove unwanted qprocess::startdetached() calls
 
-- - Fix weird alignment problem
+# Current build size
+Started at ~1.90MB
 
-- - Make Application menu use icon only
-
-- - Make Taskmanager use icon only
+22/08/22 at ~1.60MB
