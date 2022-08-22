@@ -37,13 +37,12 @@ add_executable(${PROJECT}
  WMProcess.cpp
  LXcbEventFilter.cpp
  LSession.cpp
- LDesktop.cpp
- LDesktopBackground.cpp
- LDesktopPluginSpace.cpp
- LPanel.cpp
+ desktop/LDesktop.cpp
+ desktop/LDesktopBackground.cpp
+ desktop/LDesktopPluginSpace.cpp
+ panel/LPanel.cpp
  LWinInfo.cpp
  AppMenu.cpp
- SettingsMenu.cpp
  SystemWindow.cpp
  BootSplash.cpp
  
@@ -52,74 +51,40 @@ add_executable(${PROJECT}
  framework-interfaces/framework-OSInterface_private.cpp
  framework-interfaces/framework-OSInterface-template.cpp
  
- # Base Plugins
- plugins/plugins-base.cpp
- plugins/plugins-screensaver.cpp
- plugins/plugins-desktop.cpp
-
- # Screensaver
- screensaver/LLockScreen.cpp
- screensaver/LScreenSaver.cpp
- screensaver/SSBaseWidget.cpp
-  
- # Screensaver animations
- screensaver/animations/BaseAnimGroup.cpp
- 
- screensaver/animations/BaseAnimGroup.h
- screensaver/animations/SampleAnimation.h
- screensaver/animations/Fireflies.h
- screensaver/animations/Grav.h
- screensaver/animations/ImageSlideshow.h
- screensaver/animations/VideoSlideshow.h
- screensaver/animations/Text.h
-
  # Desktop plugins
- desktop-plugins/applauncher/AppLauncherPlugin.cpp
- desktop-plugins/desktopview/DesktopViewPlugin.cpp
- desktop-plugins/notepad/NotepadPlugin.cpp
- desktop-plugins/audioplayer/PlayerWidget.cpp
- desktop-plugins/systemmonitor/MonitorWidget.cpp
- desktop-plugins/rssreader/RSSFeedPlugin.cpp
- desktop-plugins/rssreader/RSSObjects.cpp
+ desktop/desktop-plugins/applauncher/AppLauncherPlugin.cpp
+ desktop/desktop-plugins/desktopview/DesktopViewPlugin.cpp
+ desktop/desktop-plugins/notepad/NotepadPlugin.cpp
+ desktop/desktop-plugins/audioplayer/PlayerWidget.cpp
+ desktop/desktop-plugins/systemmonitor/MonitorWidget.cpp
+ desktop/desktop-plugins/rssreader/RSSFeedPlugin.cpp
+ desktop/desktop-plugins/rssreader/RSSObjects.cpp
  
- desktop-plugins/calendar/CalendarPlugin.h
- desktop-plugins/applauncher/OutlineToolButton.h
+ desktop/desktop-plugins/calendar/CalendarPlugin.h
+ desktop/desktop-plugins/applauncher/OutlineToolButton.h
 
  # Panel plugins
- panel-plugins/userbutton/LUserButton.cpp
- panel-plugins/userbutton/UserWidget.cpp
- panel-plugins/userbutton/UserItemWidget.cpp
- panel-plugins/desktopbar/LDeskBar.cpp
- panel-plugins/taskmanager/LTaskManagerPlugin.cpp
- panel-plugins/taskmanager/LTaskButton.cpp
- panel-plugins/systemtray/LSysTray.cpp
- panel-plugins/systemtray/TrayIcon.cpp
- panel-plugins/clock/LClock.cpp
- panel-plugins/battery/LBattery.cpp
- panel-plugins/desktopswitcher/LDesktopSwitcher.cpp
- panel-plugins/systemdashboard/LSysDashboard.cpp
- panel-plugins/systemdashboard/SysMenuQuick.cpp
- panel-plugins/showdesktop/LHomeButton.cpp
- panel-plugins/appmenu/LAppMenuPlugin.cpp
- panel-plugins/applauncher/AppLaunchButton.cpp
- panel-plugins/systemstart/LStartButton.cpp
- panel-plugins/systemstart/StartMenu.cpp
- panel-plugins/systemstart/ItemWidget.cpp
- panel-plugins/audioplayer/LPAudioPlayer.cpp
- panel-plugins/audioplayer/PPlayerWidget.cpp
- panel-plugins/jsonmenu/PPJsonMenu.cpp
+ panel/panel-plugins/appmenu/LAppMenuPlugin.cpp
+ panel/panel-plugins/taskmanager/LTaskManagerPlugin.cpp
+ panel/panel-plugins/taskmanager/LTaskButton.cpp
+ panel/panel-plugins/spacer/LSpacer.h
+ panel/panel-plugins/systemtray/LSysTray.cpp
+ panel/panel-plugins/systemtray/TrayIcon.cpp
+ panel/panel-plugins/clock/LClock.cpp
+ panel/panel-plugins/showdesktop/LHomeButton.cpp
 
- panel-plugins/RotateToolButton.h
- panel-plugins/spacer/LSpacer.h
- panel-plugins/line/LLine.h
+ panel/panel-plugins/jsonmenu/PPJsonMenu.cpp
+
+ panel/panel-plugins/RotateToolButton.h
+ #panel/panel-plugins/line/LLine.h
 
  #Test
- desktop-plugins/LDPlugin.cpp
- panel-plugins/LPPlugin.h
- panel-plugins/NewPP.h
- panel-plugins/LTBWidget.h
- desktop-plugins/LDPlugin.h
- desktop-plugins/NewDP.h
+ desktop/desktop-plugins/LDPlugin.cpp
+ panel/panel-plugins/LPPlugin.h
+ panel/panel-plugins/NewPP.h
+ panel/panel-plugins/LTBWidget.h
+ desktop/desktop-plugins/LDPlugin.h
+ desktop/desktop-plugins/NewDP.h
 )
 
 # Add the dependencies for linking
@@ -131,8 +96,6 @@ target_link_libraries(${PROJECT}
  Qt5::MultimediaWidgets
  Qt5::Concurrent
  Qt5::Svg
- Qt5::Quick
- Qt5::Qml
  ${LUMINA_LIBRARIES}
 )
 
@@ -162,7 +125,7 @@ install(FILES "data/audiofiles/low-battery.ogg" DESTINATION "${CMAKE_INSTALL_DAT
 ## Extrafiles
 install(FILES "data/extrafiles/Lumina-DE.png" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
 install(FILES "data/extrafiles/globs2" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
-install(DIRECTORY "data/extrafiles/screensavers" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
+# install(DIRECTORY "data/extrafiles/screensavers" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
 ## Themes
 install(DIRECTORY "data/themes" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
 ## Menuscripts

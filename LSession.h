@@ -25,13 +25,12 @@
 
 #include "Globals.h"
 #include "AppMenu.h"
-#include "SettingsMenu.h"
 #include "SystemWindow.h"
-#include "LDesktop.h"
+#include "desktop/LDesktop.h"
 //#include "WMProcess.h"
 //#include "BootSplash.h"
 //#include <LScreenSaver.h>
-#include "screensaver/LScreenSaver.h"
+//#include "screensaver/LScreenSaver.h"
 
 #include <LuminaX11.h>
 #include <LuminaSingleApplication.h>
@@ -94,12 +93,11 @@ public:
 
 	AppMenu* applicationMenu();
 	void systemWindow();
-	SettingsMenu* settingsMenu();
 	LXCB *XCB; //class for XCB usage
 
 	QSettings* sessionSettings();
 	QSettings* DesktopPluginSettings();
-	LScreenSaver* screenSaver();
+	//LScreenSaver* screenSaver();
 
 	//Keep track of which non-desktop window should be treated as active
 	WId activeWindow(); //This will return the last active window if a desktop element is currently active
@@ -122,13 +120,12 @@ private:
 
 	//Internal variable for global usage
 	AppMenu *appmenu;
-	SettingsMenu *settingsmenu;
 	SystemWindow *sysWindow;
 	QTranslator *currTranslator;
 	QMediaPlayer *mediaObj;
 	QSettings *sessionsettings, *DPlugSettings;
 	bool cleansession;
-	LScreenSaver *ScreenSaver;
+	//LScreenSaver *ScreenSaver;
 	//QList<QRect> savedScreens;
 
 	//System Tray Variables

@@ -60,11 +60,9 @@ LSession::LSession(int &argc, char ** argv) : LSingleApplication(argc, argv, "lu
   XCB = new LXCB(); //need access to XCB data/functions right away
   //initialize the empty internal pointers to 0
   appmenu = 0;
-  settingsmenu = 0;
   currTranslator=0;
   mediaObj=0;
   sessionsettings=0;
-  ScreenSaver=0;
   //Setup the event filter for Qt5
   evFilter =  new XCBEventFilter(this);
   this->installNativeEventFilter( evFilter );
@@ -86,9 +84,7 @@ LSession::~LSession(){
     DESKTOPS[i]->deleteLater();
   }
   //delete WM;
-  settingsmenu->deleteLater();
   appmenu->deleteLater();
-  if(ScreenSaver!=0){ ScreenSaver->deleteLater(); }
   delete currTranslator;
   if(mediaObj!=0){delete mediaObj;}
  }
@@ -201,8 +197,6 @@ void LSession::setupSession(){
   appmenu = new AppMenu();
 
     splash.showScreen("menus");
-  if(DEBUG){ qDebug() << " - Init SettingsMenu:" << timer->elapsed();}
-  settingsmenu = new SettingsMenu();
   if(DEBUG){ qDebug() << " - Init SystemWindow:" << timer->elapsed();}
   sysWindow = new SystemWindow();
 
@@ -237,9 +231,6 @@ void LSession::setupSession(){
   connect(watcher, SIGNAL(directoryChanged(QString)), this, SLOT(watcherChange(QString)) );
   connect(watcher, SIGNAL(fileChanged(QString)), this, SLOT(watcherChange(QString)) );
   connect(this, SIGNAL(aboutToQuit()), this, SLOT(SessionEnding()) );
-  if(DEBUG){ qDebug() << " - Start screensaver:" << timer->elapsed(); }
-  ScreenSaver = new LScreenSaver();
-  ScreenSaver->start();
   //if(DEBUG){ qDebug() << " - Process Events (4x):" << timer->elapsed();}
   //for(int i=0; i<4; i++){ LSession::processEvents(); } //Again, just a few event loops here so thing can settle before we close the splash screen
   if(DEBUG){ qDebug() << " - Launch Startup Apps:" << timer->elapsed();}
@@ -341,8 +332,6 @@ void LSession::NewCommunication(QStringList list){
       screensChanged();
     }else if(list[i]=="--show-start"){
       emit StartButtonActivated();
-    }else if(list[i]=="--lock"){
-      QTimer::singleShot(10, ScreenSaver, SLOT(LockScreenNow()) );
     }else if(list[i]=="--logout"){ QTimer::singleShot(1000, this, SLOT(StartLogout()));}
   }
 }
@@ -400,7 +389,7 @@ void LSession::StartReboot(bool skipupdates){
 }
 
 void LSession::LockScreen(){
-  QTimer::singleShot(10, ScreenSaver, SLOT(LockScreenNow()) );
+  //QTimer::singleShot(10, 'ScreenSaver, SLOT(LockScreenNow()) );
 }
 
 void LSession::reloadIconTheme(){
@@ -715,10 +704,6 @@ AppMenu* LSession::applicationMenu(){
   return appmenu;
 }
 
-SettingsMenu* LSession::settingsMenu(){
-  return settingsmenu;
-}
-
 QSettings* LSession::sessionSettings(){
   return sessionsettings;
 }
@@ -727,9 +712,9 @@ QSettings* LSession::DesktopPluginSettings(){
   return DPlugSettings;
 }
 
-LScreenSaver* LSession::screenSaver(){
+/*LScreenSaver* LSession::screenSaver(){
   return ScreenSaver;
-}
+}*/
 
 WId LSession::activeWindow(){
   //Check the last active window pointer first
