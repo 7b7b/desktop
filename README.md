@@ -10,6 +10,9 @@
 
 - - Add a checkbox for making the panel transparent
 
+- Session
+- - Remove unwanted qprocess::startdetached() calls
+
 # Current build size
 Started at ~1.90MB
 
