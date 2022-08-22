@@ -22,3 +22,8 @@
 - - Make Application menu use icon only
 
 - - Make Taskmanager use icon only
+
+# Current build size
+Started at ~1.90MB
+
+22/08/22 at ~1.60MB
