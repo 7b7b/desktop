@@ -8,11 +8,13 @@
 #include "../LSession.h"
 #include <QClipboard>
 #include <QMimeData>
+#include <QRandomGenerator>
 
 #include <LuminaOS.h>
 #include <LuminaX11.h>
 #include "../LWinInfo.h"
 #include "../JsonMenu.h"
+
 
 #include <QScreen>
 
@@ -593,7 +595,7 @@ void LDesktop::UpdateBackground(){
     }
     //Verify that there are files in the list - otherwise use the default
     if(bgL.isEmpty()){ bgFile="default"; break; }
-    int index = ( qrand() % bgL.length() );
+    int index = ( QRandomGenerator::global()->generate() % bgL.length() );
     if(index== bgL.indexOf(CBG)){ //if the current wallpaper was selected by the randomization again
       //Go to the next in the list
       if(index < 0 || index >= bgL.length()-1){ index = 0; } //if invalid or last item in the list - go to first

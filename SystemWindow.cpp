@@ -53,24 +53,6 @@ void SystemWindow::updateWindow(){
   this->move(center.x() - this->width()/2, center.y() - this->height()/2);
 }
 
-bool SystemWindow::promptAboutUpdates(bool &skip){
-  QString pending = LOS::systemPendingUpdates();
-  if(pending.isEmpty()){ skip = false; } //continue without skip
-  else{
-    QMessageBox dlg(QMessageBox::Question, tr("Apply Updates?"), tr("You have system updates waiting to be applied! Do you wish to install them now?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
-      dlg.setButtonText(QMessageBox::Yes, tr("Yes"));
-      dlg.setButtonText(QMessageBox::No, tr("No"));
-      dlg.setButtonText(QMessageBox::Cancel, tr("Cancel"));
-      dlg.setDetailedText(pending);
-      dlg.setDefaultButton(QMessageBox::Yes);
-      dlg.show();
-    int ret = dlg.exec();
-    if(ret == QMessageBox::Cancel){ return false; } //do not continue
-    else{ skip = (ret==QMessageBox::No); }
-  }
-  return true;
-}
-
 void SystemWindow::sysLogout(){
   this->close();
   LSession::processEvents();
@@ -78,26 +60,14 @@ void SystemWindow::sysLogout(){
 }
 
 void SystemWindow::sysRestart(){
-  //bool skip = false;
-  //if(!promptAboutUpdates(skip)){ this->close(); return; } //cancelled
-  //this->close();
-  //LSession::processEvents();
   LSession::handle()->StartReboot(true);
 }
 
 void SystemWindow::sysUpdate(){
-  //bool skip = false;
-  //if(!promptAboutUpdates(skip)){ this->close(); return; } //cancelled
-  //this->close();
-  //LSession::processEvents();
   LSession::handle()->StartReboot(false);
 }
 
 void SystemWindow::sysShutdown(){
-  //bool skip = false;
-  //if(!promptAboutUpdates(skip)){ this->close(); return; } //cancelled
-  //this->close();
-  //LSession::processEvents();
   LSession::handle()->StartShutdown();
 }
 
