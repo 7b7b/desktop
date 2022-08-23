@@ -1,6 +1,8 @@
 #include "BootSplash.h"
 #include "ui_BootSplash.h"
 
+#include <QRandomGenerator>
+
 #include <LuminaXDG.h>
 #include <LUtils.h>
 #include <LDesktopUtils.h>
@@ -42,7 +44,7 @@ void BootSplash::generateTipOfTheDay(){
     tip = LUtils::readFile(sysMOTD).join("\n");
 
   }else{
-     int index = qrand()%46; //Make sure this number matches the length of the case below (max value +1)
+     int index = QRandomGenerator::global()->generate()%46; //Make sure this number matches the length of the case below (max value +1)
   switch(index){
     case 0:
 	tip = tr("This desktop is powered by coffee, coffee, and more coffee."); break;

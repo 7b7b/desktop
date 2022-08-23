@@ -181,7 +181,7 @@ private slots:
 	    QFileInfo info(ID.section("---",0,0).section("::",1,50) );
 	    if(info.exists() && info.absolutePath()==QDir::homePath()+"/Desktop"){
 	      qDebug() << "Deleting Desktop Item:" << info.absoluteFilePath();
-	      if(!info.isSymLink() && info.isDir()){ QProcess::startDetached("rm -r \""+info.absoluteFilePath()+"\""); }
+	      if(!info.isSymLink() && info.isDir()){ QProcess::startDetached("rm", QStringList() << "-r" << info.absoluteFilePath()); }
               else{ QFile::remove(info.absoluteFilePath()); } //just remove the file/symlink directly  
 	      emit PluginRemovedByUser(ID);
 	      return;

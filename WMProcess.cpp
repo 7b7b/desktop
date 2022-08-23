@@ -60,7 +60,7 @@ void WMProcess::restartWM(){
 void WMProcess::updateWM(){
   if(isRunning()){
     qDebug() << "Updating WM";
-    ::kill(this->pid(), SIGUSR2); //send fluxbox the signal to reload it's configuration
+    ::kill(this->processId(), SIGUSR2); //send fluxbox the signal to reload it's configuration
   }
 }
 // =======================

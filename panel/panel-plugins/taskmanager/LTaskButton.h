@@ -16,6 +16,7 @@
 #include <QEvent>
 #include <QAction>
 #include <QTimer>
+#include <QRandomGenerator>
 
 // libLumina includes
 #include <LuminaXDG.h>
@@ -73,7 +74,7 @@ protected:
 	  LTBWidget::changeEvent(ev);
 	  QEvent::Type tmp = ev->type();
 	  if(tmp==QEvent::ThemeChange || tmp==QEvent::LanguageChange || tmp==QEvent::LocaleChange){
-	    QTimer::singleShot(qrand()%100+500, this, SLOT(UpdateButton()) );
+	    QTimer::singleShot(QRandomGenerator::global()->generate()%100+500, this, SLOT(UpdateButton()) );
 	  }
 	}
 signals:

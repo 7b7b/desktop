@@ -53,15 +53,9 @@ add_executable(${PROJECT}
  
  # Desktop plugins
  desktop/desktop-plugins/applauncher/AppLauncherPlugin.cpp
- desktop/desktop-plugins/desktopview/DesktopViewPlugin.cpp
- desktop/desktop-plugins/notepad/NotepadPlugin.cpp
- desktop/desktop-plugins/audioplayer/PlayerWidget.cpp
- desktop/desktop-plugins/systemmonitor/MonitorWidget.cpp
- desktop/desktop-plugins/rssreader/RSSFeedPlugin.cpp
- desktop/desktop-plugins/rssreader/RSSObjects.cpp
- 
- desktop/desktop-plugins/calendar/CalendarPlugin.h
  desktop/desktop-plugins/applauncher/OutlineToolButton.h
+
+ desktop/desktop-plugins/desktopview/DesktopViewPlugin.cpp
 
  # Panel plugins
  panel/panel-plugins/appmenu/LAppMenuPlugin.cpp
@@ -76,8 +70,7 @@ add_executable(${PROJECT}
  panel/panel-plugins/jsonmenu/PPJsonMenu.cpp
 
  panel/panel-plugins/RotateToolButton.h
- #panel/panel-plugins/line/LLine.h
-
+	
  #Test
  desktop/desktop-plugins/LDPlugin.cpp
  panel/panel-plugins/LPPlugin.h

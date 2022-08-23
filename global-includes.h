@@ -59,6 +59,7 @@
 #include <QQmlEngine>
 #include <QQuickImageProvider>
 #include <QtConcurrent>
+#include <QRandomGenerator>
 
 // libLumina includes
 #include <LuminaX11.h>

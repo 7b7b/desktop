@@ -9,6 +9,9 @@
 #include <LuminaThemes.h>
 #include <LuminaXDG.h>
 
+//Test
+#include <QDebug>
+
 LClock::LClock(QWidget *parent, QString id, bool horizontal) : LPPlugin(parent, id, horizontal){
   button = new QToolButton(this); //RotateToolButton(this);
     button->setAutoRaise(true);
@@ -58,9 +61,9 @@ void LClock::updateTime(bool adjustformat){
   QString label;
   QString timelabel;
   QString datelabel;
-  if(deftime){ timelabel = CT.time().toString(Qt::DefaultLocaleShortDate) ; }
+  if(deftime){ timelabel = QLocale().toString(CT.time(), QLocale::ShortFormat); }
   else{ timelabel=CT.toString(timefmt); }
-  if(defdate){ datelabel = CT.date().toString(Qt::DefaultLocaleShortDate); }
+  if(defdate){ datelabel = QLocale().toString(CT.date(), QLocale::ShortFormat); }
   else{ datelabel = CT.toString(datefmt); }
   if(datetimeorder == "dateonly"){
 	  label = datelabel;

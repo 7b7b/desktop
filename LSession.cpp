@@ -150,7 +150,7 @@ QString LSession::batteryIconName(int charge, bool charging){
 
 void LSession::setupSession(){
   //Seed random number generator (if needed)
-  qsrand( QTime::currentTime().msec() );
+  QRandomGenerator( QTime::currentTime().msec() );
 
   currTranslator = LUtils::LoadTranslation(this, "lumina-desktop");
   BootSplash splash;
@@ -248,8 +248,6 @@ void LSession::setupSession(){
 void LSession::CleanupSession(){
   //Close any running applications and tray utilities (Make sure to keep the UI interactive)
   LSession::processEvents();
-  QDateTime time = QDateTime::currentDateTime();
-  qDebug() << "Start closing down the session: " << time.toString( Qt::SystemLocaleShortDate);
   //Create a temporary flag to prevent crash dialogs from opening during cleanup
   LUtils::writeFile("/tmp/.luminastopping",QStringList() << "yes", true);
   //Start the logout chimes (if necessary)
@@ -340,13 +338,6 @@ void LSession::launchStartupApps(){
   //First start any system-defined startups, then do user defined
   qDebug() << "Launching startup applications";
   //Enable Numlock
-  if(LUtils::isValidBinary("numlockx")){ //make sure numlockx is installed
-    if(sessionsettings->value("EnableNumlock",false).toBool()){
-      QProcess::startDetached("numlockx on");
-    }else{
-      QProcess::startDetached("numlockx off");
-    }
-  }
   int tmp = LOS::ScreenBrightness();
   if(tmp>0){
     LOS::setScreenBrightness( tmp );
@@ -558,7 +549,6 @@ void LSession::updateDesktops(){
   //Make sure fluxbox also gets prompted to re-load screen config if the number of screens changes in the middle of a session
     if(!firstrun && xchange){
       qDebug() << "Update WM";
-      //QProcess::startDetached("pkill fluxbox");
       xchange = false;
     }
 
@@ -686,7 +676,6 @@ void LSession::storeClipboard(QString text, QClipboard::Mode mode){
 void LSession::LaunchApplication(QString cmd){
   //LSession::setOverrideCursor(QCursor(Qt::BusyCursor));
   ExternalProcess::launch(cmd, QStringList(), true);
-  //QProcess::startDetached(cmd);
 }
 
 QFileInfoList LSession::DesktopFiles(){
