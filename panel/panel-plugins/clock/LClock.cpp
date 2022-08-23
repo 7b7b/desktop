@@ -35,6 +35,7 @@ LClock::LClock(QWidget *parent, QString id, bool horizontal) : LPPlugin(parent, 
 
   this->layout()->setContentsMargins(0,0,0,0); //reserve some space on left/right
   this->layout()->addWidget(button);
+  this->setStyleSheet("QToolButton::hover{ background: palette(highlight); border-radius: 5px; }");
 
   //Setup the timer
   timer = new QTimer();
