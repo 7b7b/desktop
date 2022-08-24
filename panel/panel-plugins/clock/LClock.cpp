@@ -16,7 +16,6 @@ LClock::LClock(QWidget *parent, QString id, bool horizontal) : LPPlugin(parent, 
   button = new QToolButton(this); //RotateToolButton(this);
     button->setAutoRaise(true);
     button->setToolButtonStyle(Qt::ToolButtonTextOnly);
-    button->setStyleSheet("font-weight: bold;");
     button->setPopupMode(QToolButton::DelayedPopup); //make sure it runs the update routine first
     button->setMenu(new QMenu());
 	//button->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
@@ -94,7 +93,6 @@ void LClock::updateTime(bool adjustformat){
   }
   if(adjustformat){
     QFont font = LSession::handle()->font();
-      font.setBold(true);
     button->setFont(font);
    //Check the font/spacing for the display and adjust as necessary
     QStringList lines = label.split("\n");
