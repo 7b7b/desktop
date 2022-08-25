@@ -5,6 +5,7 @@
 
 - Redo the license header for each files
 - Remove commented legacy code
+- Remove json menu
 
 # Current builds size (percentages from size of the starting binary)
 Started at ~1.90MB
