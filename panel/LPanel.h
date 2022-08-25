@@ -43,8 +43,10 @@ private:
 	int viswidth, fullwidth;
 	QList<LPPlugin*> PLUGINS;
 	QRect desiredGeom;
-
 	int Screen(); //Turn the screenID into the appropriate number
+
+	// timerEvent();
+	QString styleCLR;
 
 public:
 	LPanel(QSettings *file, QString scr = 0, int num = 0, QWidget *parent = 0, bool reservespace = true); //settings file, screen number, panel number
@@ -77,6 +79,7 @@ protected:
 	void paintEvent(QPaintEvent *event);
 	void enterEvent(QEvent *event);
 	void leaveEvent(QEvent *event);
+	void timerEvent(QTimerEvent *) override;
 };
 
 #endif

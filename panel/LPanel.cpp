@@ -7,6 +7,7 @@
 #include "LPanel.h"
 #include "LSession.h"
 #include <QScreen>
+#include <QColor>
 
 #include "panel-plugins/systemtray/LSysTray.h"
 
@@ -67,18 +68,29 @@ LPanel::LPanel(QSettings *file, QString scr, int num, QWidget *parent, bool rese
   LSession::handle()->XCB->SetAsPanel(this->winId());
   //}
   LSession::handle()->XCB->SetAsSticky(this->winId());
-  if(hascompositer){
-    //qDebug() << "Enable Panel compositing";
-    //this->setStyleSheet("QWidget#LuminaPanelBackgroundWidget{ background: transparent; }");
-    //this->setWindowOpacity(0.5); //fully transparent background for the main widget
-    //panelArea->setWindowOpacity(1.0); //fully opaque for the widget on top (apply stylesheet transparencies)
-  }
   QTimer::singleShot(1,this, SLOT(UpdatePanel()) );
   //connect(screen, SIGNAL(resized(int)), this, SLOT(UpdatePanel()) ); //in case the screen resolution changes
+  this->startTimer(10000);
+  this->timerEvent(nullptr);
 }
 
 LPanel::~LPanel(){
 
+}
+
+// A fix for gtk2 style plugins
+void LPanel::timerEvent(QTimerEvent *){
+    if(settings->value(PPREFIX+"customColor", false).toBool()){
+	panelArea->setPalette(this->style()->standardPalette());
+	QRgb rgb = panelArea->palette().base().color().rgb();
+    QString color = "rgba("+ QString::number(qRed(rgb)) + ", " + QString::number(qGreen(rgb)) +", "+ QString::number(qBlue(rgb)) +", 255)";
+	if (styleCLR != color){
+		QString style = "QWidget#LuminaPanelColor{ background: %1; border-radius: 3px; border: 1px solid %1; }";
+		style = style.arg(color);
+		styleCLR = color;
+		panelArea->setStyleSheet(style);
+    }
+ }
 }
 
 int LPanel::Screen(){
@@ -237,7 +249,13 @@ void LPanel::UpdatePanel(bool geomonly){
     style = style.arg(color);
     panelArea->setStyleSheet(style);
   }else{
-    panelArea->setStyleSheet(""); //clear it and use the one from the theme
+	panelArea->setPalette(this->style()->standardPalette());
+	QRgb rgb = panelArea->palette().base().color().rgb();
+    QString color = "rgba("+ QString::number(qRed(rgb)) + ", " + QString::number(qGreen(rgb)) +", "+ QString::number(qBlue(rgb)) +", 255)";
+    QString style = "QWidget#LuminaPanelColor{ background: %1; border-radius: 3px; border: 1px solid %1; }";
+    style = style.arg(color);
+	styleCLR = color;
+    panelArea->setStyleSheet(style);
   }
 
   //Then go through the plugins and create them as necessary
