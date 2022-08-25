@@ -80,7 +80,7 @@ LPanel::~LPanel(){
 
 // A fix for gtk2 style plugins
 void LPanel::timerEvent(QTimerEvent *){
-    if(settings->value(PPREFIX+"customColor", false).toBool()){
+    if(!settings->value(PPREFIX+"customColor", false).toBool()){
 	panelArea->setPalette(this->style()->standardPalette());
 	QRgb rgb = panelArea->palette().base().color().rgb();
     QString color = "rgba("+ QString::number(qRed(rgb)) + ", " + QString::number(qGreen(rgb)) +", "+ QString::number(qBlue(rgb)) +", 255)";
