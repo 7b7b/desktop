@@ -33,7 +33,6 @@ add_executable(${PROJECT}
  main.cpp
  global-includes.h
  Globals.h
- JsonMenu.h
  WMProcess.cpp
  LXcbEventFilter.cpp
  LSession.cpp
@@ -66,9 +65,6 @@ add_executable(${PROJECT}
  panel/panel-plugins/systemtray/TrayIcon.cpp
  panel/panel-plugins/clock/LClock.cpp
  panel/panel-plugins/showdesktop/LHomeButton.cpp
-
- panel/panel-plugins/jsonmenu/PPJsonMenu.cpp
-
  panel/panel-plugins/RotateToolButton.h
 	
  #Test
