@@ -17,5 +17,5 @@ if [ ! -s "$OPENBOX_CONFIG" ]; then
  cp /etc/xdg/openbox/rc.xml "${OPENBOX_CONFIG}"
 fi
 
-openbox --config-file "${OPENBOX_CONFIG}" &
-lumina-desktop
+exec openbox --config-file "${OPENBOX_CONFIG}"
+exec lumina-desktop
