@@ -95,7 +95,7 @@ include_directories(
 
 install(TARGETS ${PROJECT} RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
-install(FILES "data/start-lumina-desktop" DESTINATION "${CMAKE_INSTALL_BINDIR}/")
+install(FILES "data/start-lumina-desktop" DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
 # XSession
 install(FILES "data/Lumina-DE.desktop" DESTINATION "${CMAKE_INSTALL_DATADIR}/xsessions")
