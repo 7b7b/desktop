@@ -101,21 +101,13 @@ install(FILES "data/Lumina-DE.desktop" DESTINATION "${CMAKE_INSTALL_DATADIR}/xse
 install(FILES "data/Lumina-DE.png" DESTINATION "${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps")
 
 # Configuration
-## Fluxbox
-install(FILES "data/fluxboxconf/fluxbox-init-rc" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
-install(FILES "data/fluxboxconf/fluxbox-keys" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
-install(FILES "data/fluxboxconf/theme.cfg" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
 ## Defaults
 install(FILES "data/defaults/luminaDesktop.conf" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
-install(FILES "data/defaults/compton.conf" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
 install(FILES "data/audiofiles/Logout.ogg" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
 install(FILES "data/audiofiles/Login.ogg" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
 install(FILES "data/audiofiles/low-battery.ogg" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
 ## Extrafiles
 install(FILES "data/extrafiles/Lumina-DE.png" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
 install(FILES "data/extrafiles/globs2" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
-# install(DIRECTORY "data/extrafiles/screensavers" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
 ## Themes
 install(DIRECTORY "data/themes" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
-## Menuscripts
-install(DIRECTORY "data/menu-scripts" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")

@@ -216,8 +216,6 @@ void LSession::setupSession(){
     QString confdir = sessionsettings->fileName().section("/",0,-2);
     watcherChange(sessionsettings->fileName() );
     watcherChange( confdir+"/desktopsettings.conf" );
-    watcherChange( confdir+"/fluxbox-init" );
-    watcherChange( confdir+"/fluxbox-keys" );
     watcherChange( confdir+"/favorites.list" );
     //Try to watch the localized desktop folder too
     watcherChange( LUtils::standardDirectory(LUtils::Desktop) );
@@ -392,7 +390,6 @@ void LSession::reloadIconTheme(){
 
 void LSession::watcherChange(QString changed){
   if(DEBUG){ qDebug() << "Session Watcher Change:" << changed; }
-  //if(changed.endsWith("fluxbox-init") || changed.endsWith("fluxbox-keys")){ refreshWindowManager(); }
   if(changed.endsWith("sessionsettings.conf") ){
     sessionsettings->sync();
     //qDebug() << "Session Settings Changed";
@@ -466,10 +463,6 @@ bool LSession::checkUserFiles(){
   qDebug() << "Finished with user files check";
   //delete A;
   return changed;
-}
-
-void LSession::refreshWindowManager(){
-  LUtils::runCmd("touch \""+QString(getenv("XDG_CONFIG_HOME"))+"/lumina-desktop/fluxbox-init\"" );
 }
 
 void LSession::updateDesktops(){
@@ -700,10 +693,6 @@ QSettings* LSession::sessionSettings(){
 QSettings* LSession::DesktopPluginSettings(){
   return DPlugSettings;
 }
-
-/*LScreenSaver* LSession::screenSaver(){
-  return ScreenSaver;
-}*/
 
 WId LSession::activeWindow(){
   //Check the last active window pointer first

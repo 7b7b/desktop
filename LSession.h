@@ -171,7 +171,6 @@ private slots:
 	void removeTrayWindow(WId);
 
 	//Internal simplification functions
-	void refreshWindowManager();
 	void updateDesktops();
 	void registerDesktopWindows();
 

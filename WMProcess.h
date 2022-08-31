@@ -33,8 +33,6 @@ private:
 	bool inShutdown;
 	bool isRunning();
 	QString setupWM();
-	void cleanupConfig();
-	//QProcess *ssaver;
 	
 private slots:
 	void processFinished(int exitcode, QProcess::ExitStatus status);
