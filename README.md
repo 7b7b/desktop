@@ -4,7 +4,10 @@
 - Remove relations to compton
 
 - Redo the license header for each files
-- Remove commented legacy code
+
+- Remove legacy code
+- - Remove commented code, they are mostly unwanted
+- - Remove the "unified" code, it's considered legacy
 
 - Make the background on hovering at desktop icons have a semi-transparent palette color
 
