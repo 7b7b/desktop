@@ -180,7 +180,7 @@ void LSession::setupSession(){
   //Setup the user's lumina settings directory as necessary
     //splash.showScreen("user");
   //if(DEBUG){ qDebug() << " - Init User Files:" << timer->elapsed();}
-  //checkUserFiles(); //adds these files to the watcher as well
+  checkUserFiles();
 
   //Initialize the internal variables
   DESKTOPS.clear();
