@@ -31,9 +31,7 @@ pkg_check_modules(LUMINA REQUIRED lumina)
 # Tell CMake to create the executable
 add_executable(${PROJECT}
  main.cpp
- global-includes.h
  Globals.h
- WMProcess.cpp
  LXcbEventFilter.cpp
  LSession.cpp
  desktop/LDesktop.cpp
@@ -41,19 +39,15 @@ add_executable(${PROJECT}
  desktop/LDesktopPluginSpace.cpp
  panel/LPanel.cpp
  LWinInfo.cpp
- AppMenu.cpp
- SystemWindow.cpp
- BootSplash.cpp
- 
- # OS framework
- framework-interfaces/framework-OSInterface.h
- framework-interfaces/framework-OSInterface_private.cpp
- framework-interfaces/framework-OSInterface-template.cpp
+
+ # Widgets
+ widgets/AppMenu.cpp
+ widgets/SystemWindow.cpp
+ widgets/BootSplash.cpp
  
  # Desktop plugins
  desktop/desktop-plugins/applauncher/AppLauncherPlugin.cpp
  desktop/desktop-plugins/applauncher/OutlineToolButton.h
-
  desktop/desktop-plugins/desktopview/DesktopViewPlugin.cpp
 
  # Panel plugins
@@ -101,15 +95,14 @@ install(FILES "data/start-lumina-desktop" DESTINATION "${CMAKE_INSTALL_BINDIR}")
 install(FILES "data/Lumina-DE.desktop" DESTINATION "${CMAKE_INSTALL_DATADIR}/xsessions")
 # PNG
 install(FILES "data/Lumina-DE.png" DESTINATION "${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps")
+install(FILES "data/Lumina-DE.png" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
 
 # Configuration
 ## Defaults
 install(FILES "data/defaults/luminaDesktop.conf" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
 install(FILES "data/audiofiles/Logout.ogg" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
 install(FILES "data/audiofiles/Login.ogg" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
-install(FILES "data/audiofiles/low-battery.ogg" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
 ## Extrafiles
-install(FILES "data/extrafiles/Lumina-DE.png" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
 install(FILES "data/extrafiles/globs2" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")
 ## Themes
 install(DIRECTORY "data/themes" DESTINATION "${CMAKE_INSTALL_DATADIR}/lumina-desktop")

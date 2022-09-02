@@ -12,7 +12,9 @@
 #include <QtConcurrent>
 #include <QMimeData>
 #include "LXcbEventFilter.h"
-#include "BootSplash.h"
+#include "widgets/BootSplash.h"
+
+#include <LuminaXDG.h>
 
 //LibLumina X11 class
 #include <LuminaX11.h>
@@ -342,7 +344,27 @@ void LSession::launchStartupApps(){
     qDebug() << " - - Screen Brightness:" << QString::number(tmp)+"%";
   }
   //QProcess::startDetached("nice lumina-open -autostart-apps");
-  ExternalProcess::launch("lumina-open", QStringList() << "-autostart-apps", false);
+  //ExternalProcess::launch("lumina-open", QStringList() << "-autostart-apps", false);
+
+	//* FROM LUMINA-OPEN
+
+  QList<XDGDesktop*> xdgapps = LXDG::findAutoStartFiles();
+  for(int i=0; i<xdgapps.length(); i++){
+    //Generate command and clean up any stray "Exec" field codes (should not be any here)
+    QString cmd = xdgapps[i]->getDesktopExec();
+    if(cmd.contains("%")){cmd = cmd.remove("%U").remove("%u").remove("%F").remove("%f").remove("%i").remove("%c").remove("%k").simplified(); }
+    //Now run the command
+    if(!cmd.isEmpty()){
+      if(DEBUG) qDebug() << " - Auto-Starting File:" << xdgapps[i]->filePath;
+      QStringList args = cmd.split(" ");
+      args.removeFirst();
+      QProcess::startDetached(cmd.split(" ")[0], args);
+    }
+  }
+  //make sure we clean up all the xdgapps structures
+  for(int i=0;  i<xdgapps.length(); i++){ xdgapps[i]->deleteLater(); }
+
+	//* END
 
   //Re-load the screen brightness and volume settings from the previous session
   // Wait until after the XDG-autostart functions, since the audio system might be started that way

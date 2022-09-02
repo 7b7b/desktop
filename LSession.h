@@ -24,8 +24,8 @@
 #include <QClipboard>
 
 #include "Globals.h"
-#include "AppMenu.h"
-#include "SystemWindow.h"
+#include "widgets/AppMenu.h"
+#include "widgets/SystemWindow.h"
 #include "desktop/LDesktop.h"
 //#include "WMProcess.h"
 //#include "BootSplash.h"

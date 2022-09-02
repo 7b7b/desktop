@@ -28,7 +28,7 @@
 
 #include "panel/LPanel.h"
 //#include "Globals.h"
-#include "AppMenu.h"
+#include "widgets/AppMenu.h"
 #include "LDesktopPluginSpace.h"
 #include "desktop-plugins/LDPlugin.h"
 //#include "desktop-plugins/NewDP.h"
