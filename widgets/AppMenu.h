@@ -20,7 +20,6 @@
 #include <QHash>
 #include <QAction>
 #include <QSettings>
-//#include <QProcess>
 
 // libLumina includes
 #include <LuminaXDG.h>
@@ -36,7 +35,6 @@ public:
 
 private:
 	//QFileSystemWatcher *watcher;
-	QString appstorelink, controlpanellink;
 	QList<QMenu> MLIST;
 	XDGDesktopList *sysApps;
 	QHash<QString, QList<XDGDesktop*> > APPS;
@@ -46,9 +44,6 @@ private:
 private slots:
 	void start(); //This is called in a new thread after initialization
 	void watcherUpdate();
-	void launchStore();
-	void launchControlPanel();
-	void launchFileManager();
 	void launchApp(QAction *act);
 
 signals:

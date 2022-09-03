@@ -9,8 +9,8 @@
 
 #include <LuminaX11.h>
 
-LHomeButtonPlugin::LHomeButtonPlugin(QWidget *parent, QString id, bool horizontal) : LPPlugin(parent, id, horizontal){
-  button = new QToolButton(this);
+LHomeButtonPlugin::LHomeButtonPlugin(QWidget *parent, QString id, bool horizontal) : LPPlugin(parent, id, horizontal) {
+    button = new QToolButton(this);
     button->setAutoRaise(true);
     button->setToolButtonStyle(Qt::ToolButtonIconOnly);
 
@@ -18,28 +18,28 @@ LHomeButtonPlugin::LHomeButtonPlugin(QWidget *parent, QString id, bool horizonta
     this->layout()->setContentsMargins(0,0,0,0);
     this->layout()->addWidget(button);
 
-  this->setStyleSheet("QToolButton::hover{ background: palette(highlight); border-radius: 5px; }");
+    this->setStyleSheet("QToolButton::hover{ background: palette(highlight); border-radius: 5px; }");
 
-  QTimer::singleShot(0,this, SLOT(OrientationChange())); //Update icons/sizes
+    QTimer::singleShot(0,this, SLOT(OrientationChange())); //Update icons/sizes
 }
 
-LHomeButtonPlugin::~LHomeButtonPlugin(){
+LHomeButtonPlugin::~LHomeButtonPlugin() {
 
 }
 
-void LHomeButtonPlugin::updateButtonVisuals(){
-  button->setIcon( LXDG::findIcon("user-desktop", "") );
+void LHomeButtonPlugin::updateButtonVisuals() {
+    button->setIcon( LXDG::findIcon("user-desktop", "") );
 }
 
 // ========================
 //    PRIVATE FUNCTIONS
 // ========================
-void LHomeButtonPlugin::showDesktop(){
-  QList<WId> wins = LSession::handle()->XCB->WindowList();
-  for(int i=0; i<wins.length(); i++){
-    if( LXCB::INVISIBLE != LSession::handle()->XCB->WindowState(wins[i]) ){
-      LSession::handle()->XCB->MinimizeWindow(wins[i]);
+void LHomeButtonPlugin::showDesktop() {
+    QList<WId> wins = LSession::handle()->XCB->WindowList();
+    for(int i=0; i<wins.length(); i++) {
+        if( LXCB::INVISIBLE != LSession::handle()->XCB->WindowState(wins[i]) ) {
+            LSession::handle()->XCB->MinimizeWindow(wins[i]);
+        }
     }
-  }
 }
 

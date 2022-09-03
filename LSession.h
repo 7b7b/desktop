@@ -27,10 +27,6 @@
 #include "widgets/AppMenu.h"
 #include "widgets/SystemWindow.h"
 #include "desktop/LDesktop.h"
-//#include "WMProcess.h"
-//#include "BootSplash.h"
-//#include <LScreenSaver.h>
-//#include "screensaver/LScreenSaver.h"
 
 #include <LuminaX11.h>
 #include <LuminaSingleApplication.h>
@@ -53,8 +49,6 @@ class LSession : public LSingleApplication{
 public:
 	LSession(int &argc, char **argv);
 	~LSession();
-
-	static QString batteryIconName(int charge, bool charging);
 
 	static bool checkUserFiles();
 	//Functions to be called during startup

@@ -13,15 +13,15 @@
 #include "LSession.h"
 
 void LDesktopBackground::paintEvent(QPaintEvent *ev) {
-  //return; //do nothing - always invisible
+    //return; //do nothing - always invisible
     if (bgPixmap != NULL) {
         //qDebug() << "Wallpaper paint Event:" << ev->rect();
         //QPainter painter(this);
         //painter.setBrush(*bgPixmap);
         //painter.drawRect(ev->rect().adjusted(-1,-1,2,2));
-    }else{
-      QWidget::paintEvent(ev);
-   }
+    } else {
+        QWidget::paintEvent(ev);
+    }
 }
 
 QPixmap LDesktopBackground::setBackground(const QString& bgFile, const QString& format, QRect geom) {
@@ -46,7 +46,9 @@ QPixmap LDesktopBackground::setBackground(const QString& bgFile, const QString& 
             } else {
                 mode = Qt::KeepAspectRatio;
             }
-            if(bgImage.height() != geom.height() && bgImage.width() != geom.width() ){ bgImage = bgImage.scaled(geom.size(), mode, Qt::SmoothTransformation);  }
+            if(bgImage.height() != geom.height() && bgImage.width() != geom.width() ) {
+                bgImage = bgImage.scaled(geom.size(), mode, Qt::SmoothTransformation);
+            }
             //bgImage = bgImage.scaled(size(), mode);
         }
 
@@ -75,7 +77,7 @@ QPixmap LDesktopBackground::setBackground(const QString& bgFile, const QString& 
         painter.drawRect(dx, dy, drawWidth, drawHeight);
     }
     //this->repaint(); //make sure the entire thing gets repainted right away
-   //LSession::handle()->XCB->paintRoot(geom, &bgPixmap);
+    //LSession::handle()->XCB->paintRoot(geom, &bgPixmap);
     return bgPixmap;
     //show();
 }
